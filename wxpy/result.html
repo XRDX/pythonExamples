@@ -1,0 +1,108 @@
+<html>
+<head>
+</head>
+<body>
+
+	<div id="sex" style="height:400px;width:600px;margin:10px"></div>
+	<div id="provice" style="height:400px;width:600px;margin:10px"></div>
+	<div id="word" style="height:500px;width:600px;margin:10px">
+		<p><b>朋友特性</b></p>
+		<img src="output.png" style="height:450px;width:600px"></img>
+	</div>
+	<script src='https://cdn.bootcss.com/echarts/2.2.7/echarts-all.js'></script>
+	<script src='data.js'></script>
+
+	<script>
+
+var myChart1 = echarts.init(document.getElementById('sex'));
+
+var option1 = {
+    title : {
+        text: name + '朋友性别分布',
+        subtext: '数据来自于立乐数据局',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient : 'vertical',
+        x : 'left',
+        data:[]
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {
+                show: true, 
+                type: ['pie', 'funnel'],
+                option: {
+                    funnel: {
+                        x: '25%',
+                        width: '50%',
+                        funnelAlign: 'left',
+                        max: 1548
+                    }
+                }
+            },
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    series : [
+        {
+            name:'性别',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data: sex_data
+        }
+    ]
+};
+
+myChart1.setOption(option1);
+
+var myChart2 = echarts.init(document.getElementById('provice'));
+
+var option2 = {
+    title : {
+        text: name + '朋友分布',
+        subtext: '数据来自立乐统计局'
+    },
+    tooltip : {
+        trigger: 'item'
+    },
+    dataRange: {
+        orient: 'horizontal',
+        min: 0,
+        max: 20,
+        text:['高','低'],           // 文本，默认为数值文本
+        splitNumber:0
+    },
+    series : [
+        {
+            name: '好友分布',
+            type: 'map',
+            mapType: 'china',
+            mapLocation: {
+                x: 'left'
+            },
+            selectedMode : 'multiple',
+            itemStyle:{
+                normal:{label:{show:true}},
+                emphasis:{label:{show:true}}
+            },
+            data: provice_data
+        }
+    ],
+    animation: false
+};
+
+myChart2.setOption(option2);
+	</script>
+</body>	
+</html>
