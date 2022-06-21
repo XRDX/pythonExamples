@@ -1,6 +1,6 @@
 wordcloud==1.4.1
 wxpy==0.3.9.8
-numpy==1.14.3
+numpy==1.22.0
 matplotlib==2.2.2
 jieba==0.39
 pandas==0.23.0
